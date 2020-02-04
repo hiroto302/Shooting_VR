@@ -22,7 +22,13 @@ public class SimpleShoot : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        // if (Input.GetButtonDown("Fire1"))
+        // {
+        //     GetComponent<Animator>().SetTrigger("Fire");
+        // }
+
+        //VRコントローラーの操作に対応
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {
             GetComponent<Animator>().SetTrigger("Fire");
         }
