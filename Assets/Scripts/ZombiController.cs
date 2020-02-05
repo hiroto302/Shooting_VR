@@ -9,6 +9,7 @@ public class ZombiController : MonoBehaviour
     GameObject player;
     public float rangeDistance = 2.0f;  //攻撃判定距離
     public bool CanWalk {get; private set;}  //ゾンビの歩行判定フラグ
+    public GameObject explosionPrefab;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -54,6 +55,7 @@ public class ZombiController : MonoBehaviour
     void DestroyZombi()
     {
         Destroy(gameObject);
+        Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);
     }
 
     void Attack()

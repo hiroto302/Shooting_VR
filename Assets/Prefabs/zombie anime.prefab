@@ -1850,6 +1850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeDistance: 2
+  explosionPrefab: {fileID: 100006, guid: e076683e0305e35498b8e8834978c0fa, type: 3}
 --- !u!136 &1308599351703787786
 CapsuleCollider:
   m_ObjectHideFlags: 0
