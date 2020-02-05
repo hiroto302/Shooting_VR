@@ -8,10 +8,13 @@ public class ZombiController : MonoBehaviour
     Animator animator;
     GameObject player;
     public float rangeDistance = 2.0f;  //攻撃判定距離
+    public bool CanWalk {get; private set;}  //ゾンビの歩行判定フラグ
     void Start()
     {
         animator = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
+
+        CanWalk = true;
     }
 
     void Update()
@@ -26,6 +29,31 @@ public class ZombiController : MonoBehaviour
         {
             Attack();
         }
+    }
+
+    //銃でゾンビを撃った後の処理
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Bullet")
+        {
+            //ゾンビが倒れるメソッドの呼び出し
+            FallDown();
+        }
+    }
+
+    void FallDown()
+    {
+        //動きを止める
+        CanWalk = false;
+        //倒れるアニメーション
+        animator.SetTrigger("FallDown");
+        //ゾンビを消す
+        Invoke("DestroyZombi", 1.0f);
+    }
+
+    void DestroyZombi()
+    {
+        Destroy(gameObject);
     }
 
     void Attack()
